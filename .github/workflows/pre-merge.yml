@@ -29,7 +29,7 @@ jobs:
       - name: Launchable record build
         run: launchable record build --name ${{ github.run_id }}
       - name: Compile
-        run: mvn compile
+        run: npm run build
       - name: Launchable subset
         run: |
           launchable record session --build ${{ github.run_id }} --observation --test-suite unit-test > session.txt
@@ -37,6 +37,6 @@ jobs:
           cat launchable-subset.txt
       - name: Test
         # run: mvn test
-        run: mvn test -Dsurefire.includesFile=launchable-subset.txt
+        run: npm test -Dsurefire.includesFile=launchable-subset.txt
       - name: Launchable record tests
         run: launchable record tests --session $(cat session.txt) maven ./**/target/surefire-reports
