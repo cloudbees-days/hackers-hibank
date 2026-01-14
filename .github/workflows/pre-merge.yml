@@ -28,8 +28,8 @@ jobs:
         run: launchable verify
       - name: Launchable record build
         run: launchable record build --name ${{ github.run_id }}
-      - name: Compile
-        run: npm run build
+      # - name: Compile
+        # run: npm run build
       - name: Launchable subset
         run: |
           launchable record session --build ${{ github.run_id }} --observation --test-suite unit-test > session.txt
